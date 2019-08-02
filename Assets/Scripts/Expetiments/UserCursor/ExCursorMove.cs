@@ -64,7 +64,7 @@ public class ExCursorMove : MonoBehaviour
             py = gameObject.transform.position.y;
             
 
-            if (Input.GetKeyDown(KeyCode.Space) && sm.isStartStudy) FinishSession();
+            if (Input.GetKeyDown(KeyCode.Space) && sm.isStartStudy) FinishSession(false);
         }
     }
 
@@ -81,15 +81,19 @@ public class ExCursorMove : MonoBehaviour
         gameObject.transform.position = new Vector3(rx, ry, 0);
     }
 
-    public void FinishSession()
+    public void FinishSession(bool over)
     {
         Vector3 currentCursorPos = Camera.main.WorldToScreenPoint(gameObject.transform.position);
         float dist = Vector2.Distance(new Vector2(cx, cy), new Vector2(currentCursorPos.x, currentCursorPos.y));
-        if(dist <= 23f) {
-            sm.resultState = 0;
-            sm.positive++;
+        if(over) {
+            sm.resultState = 2;
         } else {
-            sm.resultState = 1;
+            if(dist <= 20f) {
+                sm.resultState = 0;
+                sm.positive++;
+            } else {
+                sm.resultState = 1;
+            }
         }
         ctp.HideTrialPanel();
         tv.ResetTimer();
