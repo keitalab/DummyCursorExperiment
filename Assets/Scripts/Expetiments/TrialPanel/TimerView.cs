@@ -33,8 +33,7 @@ public class TimerView : MonoBehaviour
         timerView.text = seconds.ToString() + "[s]";
 
         if(seconds <= 0){
-            // ここはまた別の処理が必要
-            ecm.FinishSession();
+            ecm.FinishSession(true);
             return;
         }
     }
