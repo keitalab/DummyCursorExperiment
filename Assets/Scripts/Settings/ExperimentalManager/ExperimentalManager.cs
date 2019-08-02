@@ -23,14 +23,16 @@ public class ExperimentalManager : MonoBehaviour
     void Awake()
     {
         dummyNumSession = new List<int>();
-        dummyNumSession.Add(4);
+        dummyNumSession.Add(5);
+        dummyNumSession.Add(10);
+        dummyNumSession.Add(15);
         minDelay = 0.0f;
         maxDelay = 1.0f;
-        intervalDelay = 0.05f;
+        intervalDelay = 0.1f;
         minAngle = 30;
         maxAngle = 360-minAngle;
         selectedVisual = 0;
-        cdr = 1.0f;
+        cdr = 0.7f;// default cdr
         cdrSession = new List<float>();
         cdrSession.Add(cdr);
         delaySession = new List<int>();
