@@ -8,9 +8,13 @@ public class StudyManager : MonoBehaviour
     // for moving user cursor and dummy cursor params
     public bool isDelay;
     public bool isDiscover;
-    public float delayTime;
-    public int dummyNum;
-    public float cdr;
+    public float delayTime;// for recording
+    public float delayInterval;// a session
+    public float diffDelayInterval;// for 1 up two down method
+    public List<int> dummyNumSession;
+    public int dummyNum;// for recording
+    public List<float> cdrSession;
+    public float cdr;// for recording
     public int minAngle;
     public int maxAngle;
     public float discoveredTime;
@@ -29,11 +33,14 @@ public class StudyManager : MonoBehaviour
     public string rootPath, absPath, relPath;
     public float timeLimit;
     public List<Vector2> absPosStock, relPosStock;
+    public int positive;// positive for cursr
+    public int turn;// 1 up two down judge
+    public int continuous;// which is continued ?
+    public string preReaction; // a previous judge
+    public string currentReaction; // a current judge
     private ExperimentalManager em;
     public void Awake()
     {
-        minAngle = 30;
-        maxAngle = 360-minAngle;
         subjectName = "your name";
         isStartStudy = false;
         finishInterval = false;
@@ -50,7 +57,12 @@ public class StudyManager : MonoBehaviour
         relPath = "";
         absPosStock = new List<Vector2>();
         relPosStock = new List<Vector2>();
-        timeLimit = 4.0f;
+        timeLimit = 31.0f;
+        positive = 0;
+        turn = 0;
+        continuous = 0;
+        preReaction = "";
+        currentReaction = "";
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     // Start is called before the first frame update
@@ -74,8 +86,25 @@ public class StudyManager : MonoBehaviour
     private void initializeSettings()
     {
         em = GameObject.Find("ExperimentalManager").GetComponent<ExperimentalManager>();
-        studySessions = new List<string>(em.ExperimentalSettings);
+        // studySessions = new List<string>(em.ExperimentalSettings);
+        studySessions = new List<string>();
+        dummyNumSession = em.dummyNumSession;
+        delayInterval = em.intervalDelay;
+        diffDelayInterval = delayInterval / 2f;
+        cdrSession = em.cdrSession;
+        GenerateStartStudySession(dummyNumSession, cdrSession);
         minAngle = em.minAngle;
         maxAngle = 360 - minAngle;
+    }
+
+    private void GenerateStartStudySession(List<int> _dummy, List<float> _cdr)
+    {
+        for(int i = 0; i < _dummy.Count; i++){
+            for(int j = 0; j < _cdr.Count; j++){
+                int _dummies = dummyNumSession[i];
+                float _cdrs = cdrSession[j];
+                studySessions.Add($"{_dummies.ToString()}" + ",0," + $"{_cdrs.ToString()}");// init delay is 0
+            }
+        }
     }
 }

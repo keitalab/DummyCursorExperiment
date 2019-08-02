@@ -61,19 +61,92 @@ public class IntervalTimer : MonoBehaviour
     private void SetStudyParams()
     {
         int sessionCount = sm.studySessions.Count;
-        if(sessionCount == 0) Quit();
-        int sessionNum = UnityEngine.Random.Range(0, sessionCount);
+        if(sessionCount == 0){
+            if(sm.positive > 1){
+                sm.currentReaction = "s";
+                if(sm.preReaction == ""){
+                    sm.continuous++;
+                    sm.preReaction = sm.currentReaction;
+                    GeneratePositiveSession();
+                } else if(sm.preReaction == "s"){
+                    sm.continuous++;
+                    GeneratePositiveSession();
+                } else if(sm.preReaction == "f"){
+                    if(sm.continuous > 1){
+                        sm.turn++;
+                        sm.continuous = 0;
+                        GeneratePositiveSession();
+                    } else {
+                        sm.continuous = 0;
+                        GeneratePositiveSession();
+                    }
+                }
+                sm.preReaction = sm.currentReaction;
+            } else {
+                sm.currentReaction = "f";
+                if(sm.preReaction == ""){
+                    sm.continuous++;
+                    sm.preReaction = sm.currentReaction;
+                    Quit();
+                } else if(sm.preReaction == "s"){
+                    if(sm.continuous > 1){
+                        sm.turn++;
+                        sm.continuous = 0;
+                        GenerateNegativeSession();
+                    } else {
+                        sm.continuous = 0;
+                        GenerateNegativeSession();
+                    }
+                } else if(sm.preReaction == "f"){
+                    sm.continuous++;
+                    GenerateNegativeSession();
+                }
+                sm.preReaction = sm.currentReaction;
+            }
+        }
+
+        if(sm.turn > 2) Quit();
+
+        int sessionNum = UnityEngine.Random.Range(0, sm.studySessions.Count);
         sm.perSession = sm.studySessions[sessionNum];
         sm.studySessions.RemoveAt(sessionNum);
 
         string[] _params = sm.perSession.Split(',');
         sm.dummyNum = int.Parse(_params[0]);
-        sm.delayTime = float.Parse(_params[1]) / 1000f;
+        sm.delayTime = float.Parse(_params[1]);
         sm.isDelay = (sm.delayTime) == 0f ? false : true;
         sm.cdr = float.Parse(_params[2]);
 
         excv.RandomizeCursorPos();// generate user cursor
         if(sm.dummyNum > 1) exdc.GenerateDummyCursor(sm.dummyNum);// generate dummy curosr
+    }
+
+    private void GeneratePositiveSession()
+    {
+        sm.studySessions.Clear();
+        sm.positive = 0;
+        sm.delayTime += sm.delayInterval;
+        for(int i = 0; i < sm.dummyNumSession.Count; i++){
+            for(int j = 0; j < sm.cdrSession.Count; j++){
+                int _dummies = sm.dummyNumSession[i];
+                float _cdr = sm.cdrSession[j];
+                sm.studySessions.Add($"{_dummies.ToString()}" + "," + $"{sm.delayTime.ToString()}" + "," + $"{_cdr.ToString()}");
+            }
+        }
+    }
+
+    private void GenerateNegativeSession()
+    {
+        sm.studySessions.Clear();
+        sm.positive = 0;
+        sm.delayTime -= sm.diffDelayInterval;
+        for(int i = 0; i < sm.dummyNumSession.Count; i++){
+            for(int j = 0; j < sm.cdrSession.Count; j++){
+                int _dummies = sm.dummyNumSession[i];
+                float _cdr = sm.cdrSession[j];
+                sm.studySessions.Add($"{_dummies.ToString()}" + "," + $"{sm.delayTime.ToString()}" + "," + $"{_cdr.ToString()}");
+            }
+        }
     }
 
     void Quit() {

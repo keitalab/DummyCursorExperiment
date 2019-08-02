@@ -87,6 +87,7 @@ public class ExCursorMove : MonoBehaviour
         float dist = Vector2.Distance(new Vector2(cx, cy), new Vector2(currentCursorPos.x, currentCursorPos.y));
         if(dist <= 23f) {
             sm.resultState = 0;
+            sm.positive++;
         } else {
             sm.resultState = 1;
         }
