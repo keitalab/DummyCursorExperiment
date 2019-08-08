@@ -41,6 +41,9 @@ public class StudyManager : MonoBehaviour
     public string currentReaction; // a current judge
     private ExperimentalManager em;
     public bool isPractice;
+    public int selfCursorNum;
+    public List<int> dummySelectableNumbers;
+    public int userSelectCursorNum;
     public void Awake()
     {
         subjectName = "your name";
@@ -66,6 +69,10 @@ public class StudyManager : MonoBehaviour
         preReaction = "";
         currentReaction = "";
         isPractice = true;
+        selfCursorNum = 99999;// init number
+        dummySelectableNumbers = new List<int>();
+        dummySelectableNumbers.Add(9999);
+        userSelectCursorNum = 9999;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     // Start is called before the first frame update
