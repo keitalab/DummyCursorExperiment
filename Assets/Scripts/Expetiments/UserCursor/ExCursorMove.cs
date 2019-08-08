@@ -81,6 +81,7 @@ public class ExCursorMove : MonoBehaviour
         gameObject.transform.position = new Vector3(rx, ry, 0);
     }
 
+    // TODO: change here
     public void FinishSession(bool over)
     {
         Vector3 currentCursorPos = Camera.main.WorldToScreenPoint(gameObject.transform.position);
