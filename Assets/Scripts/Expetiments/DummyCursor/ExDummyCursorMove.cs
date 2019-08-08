@@ -17,19 +17,22 @@ public class ExDummyCursorMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ax = Input.GetAxis("Mouse X");
-        ay = Input.GetAxis("Mouse Y");
-        Vector3 direction = new Vector3(ax,ay, 0) * 0.5f;
+        if(sm.isStartSession)
+        {
+            ax = Input.GetAxis("Mouse X");
+            ay = Input.GetAxis("Mouse Y");
+            Vector3 direction = new Vector3(ax,ay, 0) * 0.5f;
 
-        if(sm.isDelay){
-            StartCoroutine(DummyCursorFunc.DelayCursor(sm.delayTime, () =>
-            {
+            if(sm.isDelay){
+                StartCoroutine(DummyCursorFunc.DelayCursor(sm.delayTime, () =>
+                {
+                    DummyCursorFunc.MoveDummyCursor(gameObject, direction, sm.cdr);
+                    clone = gameObject.transform.position;
+                }));
+            } else {
                 DummyCursorFunc.MoveDummyCursor(gameObject, direction, sm.cdr);
                 clone = gameObject.transform.position;
-            }));
-        } else {
-            DummyCursorFunc.MoveDummyCursor(gameObject, direction, sm.cdr);
-            clone = gameObject.transform.position;
+            }
         }
     }
 }
