@@ -25,6 +25,7 @@ public class StudyManager : MonoBehaviour
     public float sessionIntervalTime;
     public int selectedVisual;
     public List<string> studySessions;
+    public List<string> practiceSessions;
     public string perSession;
     public bool isStartSession;
     public int resultState;// 0: success(correct self cursor), 1: error(not correct self cursor), 2: failed(time over)
@@ -39,6 +40,7 @@ public class StudyManager : MonoBehaviour
     public string preReaction; // a previous judge
     public string currentReaction; // a current judge
     private ExperimentalManager em;
+    public bool isPractice;
     public void Awake()
     {
         subjectName = "your name";
@@ -63,6 +65,7 @@ public class StudyManager : MonoBehaviour
         continuous = 0;
         preReaction = "";
         currentReaction = "";
+        isPractice = true;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     // Start is called before the first frame update
@@ -87,12 +90,13 @@ public class StudyManager : MonoBehaviour
     {
         em = GameObject.Find("ExperimentalManager").GetComponent<ExperimentalManager>();
         // studySessions = new List<string>(em.ExperimentalSettings);
-        studySessions = new List<string>();
-        dummyNumSession = em.dummyNumSession;
-        delayInterval = em.intervalDelay;
-        diffDelayInterval = delayInterval / 2f;
-        cdrSession = em.cdrSession;
-        GenerateStartStudySession(dummyNumSession, cdrSession);
+        studySessions = new List<string>(em.ExperimentalSettings);
+        practiceSessions = new List<string>(em.PracticeSettings);
+        // dummyNumSession = em.dummyNumSession;
+        // delayInterval = em.intervalDelay;
+        // diffDelayInterval = delayInterval / 2f;
+        // cdrSession = em.cdrSession;
+        // GenerateStartStudySession(dummyNumSession, cdrSession);
         minAngle = em.minAngle;
         maxAngle = 360 - minAngle;
     }
