@@ -27,6 +27,12 @@ public class ExCursorMove : MonoBehaviour
     public Text timerView;
     private TimerView tv;
 
+    public Canvas selectorPanel;
+    private CursorSelectorController csc;
+    public GameObject createDumyNumberView;
+    private CreateDummyNumbeerView cdnv;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +42,8 @@ public class ExCursorMove : MonoBehaviour
         it = intervalTimer.GetComponent<IntervalTimer>();
         ctp = trialPanel.GetComponent<ControlTrialPanel>();
         tv = timerView.GetComponent<TimerView>();
+        csc = selectorPanel.GetComponent<CursorSelectorController>();
+        cdnv = createDumyNumberView.GetComponent<CreateDummyNumbeerView>();
         cx = Screen.width/2;
         cy = Screen.height/2;
     }
@@ -100,6 +108,7 @@ public class ExCursorMove : MonoBehaviour
         tv.ResetTimer();
         jatv.FinishRecording();
         itvc.ShowIntervalTimer();
+        csc.ShowCursorSelector();
         sm.isStartSession = false;
     }
 }

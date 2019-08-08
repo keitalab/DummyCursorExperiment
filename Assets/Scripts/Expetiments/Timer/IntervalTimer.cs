@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class IntervalTimer : MonoBehaviour
 {
@@ -20,6 +21,10 @@ public class IntervalTimer : MonoBehaviour
     private IntervalTimerViewController itvc;
     public Canvas trialPanel;
     private ControlTrialPanel ctp;
+    public Canvas selectorPanel;
+    private CursorSelectorController csc;
+    public GameObject createDumyNumberView;
+    private CreateDummyNumbeerView cdnv;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,8 +33,10 @@ public class IntervalTimer : MonoBehaviour
         exdc = dummyCursor.GetComponent<ExDummyCreator>();
         jatv = judgeAndTimeView.GetComponent<JudgeAndTimeViewer>();
         itvc = timerPanel.GetComponent<IntervalTimerViewController>();
+        csc = selectorPanel.GetComponent<CursorSelectorController>();
         timerView = gameObject.GetComponent<Text>();
         ctp = trialPanel.GetComponent<ControlTrialPanel>();
+        cdnv = createDumyNumberView.GetComponent<CreateDummyNumbeerView>();
         intervalTime = sm.sessionIntervalTime;// interval is 3 seconds
     }
 
@@ -50,8 +57,12 @@ public class IntervalTimer : MonoBehaviour
             seconds = (int)intervalTime;
             sm.finishInterval = true;
             SetStudyParams();
+            cdnv.DestroyDummyView();
+            cdnv.AllClear();
+            cdnv.InitDummyNumberView();
             jatv.StartRecording();
             itvc.HideIntervalTimer();
+            csc.HideCursorSelector();
             sm.isStartSession = !sm.isStartSession;
             ctp.ShowTrialPanel();
             return;
@@ -73,6 +84,16 @@ public class IntervalTimer : MonoBehaviour
             sm.isDelay = (sm.delayTime) == 0f ? false : true;
             sm.cdr = float.Parse(_params[2]);
 
+            // generate correct user cursor number by randomizer
+            int totalCursors = 1 + sm.dummyNum;
+            sm.dummySelectableNumbers.Clear();
+            sm.dummySelectableNumbers = new List<int>();
+            for(int i = 0; i < totalCursors; i++){
+                sm.dummySelectableNumbers.Add(i);
+            }
+            sm.selfCursorNum = UnityEngine.Random.Range(0, totalCursors);// set correct cursor number
+            sm.dummySelectableNumbers.RemoveAt(sm.selfCursorNum); // remove true cursor number from list
+
             excv.RandomizeCursorPos();// generate user cursor
             if(sm.dummyNum > 1) exdc.GenerateDummyCursor(sm.dummyNum);// generate dummy curosr
         } else {
@@ -87,6 +108,16 @@ public class IntervalTimer : MonoBehaviour
             sm.delayTime = float.Parse(_params[1]) / 1000f;
             sm.isDelay = (sm.delayTime) == 0f ? false : true;
             sm.cdr = float.Parse(_params[2]);
+
+            // generate correct user cursor number by randomizer
+            int totalCursors = 1 + sm.dummyNum;
+            sm.dummySelectableNumbers.Clear();
+            sm.dummySelectableNumbers = new List<int>();
+            for(int i = 0; i < totalCursors; i++){
+                sm.dummySelectableNumbers.Add(i);
+            }
+            sm.selfCursorNum = UnityEngine.Random.Range(0, totalCursors + 1);// set correct cursor number
+            sm.dummySelectableNumbers.RemoveAt(sm.selfCursorNum); // remove true cursor number from list
 
             excv.RandomizeCursorPos();// generate user cursor
             if(sm.dummyNum > 1) exdc.GenerateDummyCursor(sm.dummyNum);// generate dummy curosr
@@ -184,6 +215,21 @@ public class IntervalTimer : MonoBehaviour
             }
         }
     }
+
+    private void ShowListContentsInTheDebugLog<T>(List<T> list)
+        {
+            string log = "";
+
+            foreach(var content in list.Select((val, idx) => new {val, idx}))
+            {
+                if (content.idx == list.Count - 1)
+                    log += content.val.ToString();
+                else
+                    log += content.val.ToString() + ", ";
+            }
+
+        Debug.Log(log);
+        }
 
     void Quit() {
         #if UNITY_EDITOR
