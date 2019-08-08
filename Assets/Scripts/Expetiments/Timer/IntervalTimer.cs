@@ -60,6 +60,42 @@ public class IntervalTimer : MonoBehaviour
 
     private void SetStudyParams()
     {
+        sm.isPractice = sm.practiceSessions.Count != 0 ? true : false;
+        if(sm.isPractice)
+        {
+            int sessionCount = sm.practiceSessions.Count;
+            sm.perSession = sm.practiceSessions[0];
+            sm.practiceSessions.RemoveAt(0);
+
+            string[] _params = sm.perSession.Split(',');
+            sm.dummyNum = int.Parse(_params[0]);
+            sm.delayTime = float.Parse(_params[1]) / 1000f;
+            sm.isDelay = (sm.delayTime) == 0f ? false : true;
+            sm.cdr = float.Parse(_params[2]);
+
+            excv.RandomizeCursorPos();// generate user cursor
+            if(sm.dummyNum > 1) exdc.GenerateDummyCursor(sm.dummyNum);// generate dummy curosr
+        } else {
+            int sessionCount = sm.studySessions.Count;
+            if(sessionCount == 0) Quit();
+            int sessionNum = UnityEngine.Random.Range(0, sessionCount);
+            sm.perSession = sm.studySessions[sessionNum];
+            sm.studySessions.RemoveAt(sessionNum);
+
+            string[] _params = sm.perSession.Split(',');
+            sm.dummyNum = int.Parse(_params[0]);
+            sm.delayTime = float.Parse(_params[1]) / 1000f;
+            sm.isDelay = (sm.delayTime) == 0f ? false : true;
+            sm.cdr = float.Parse(_params[2]);
+
+            excv.RandomizeCursorPos();// generate user cursor
+            if(sm.dummyNum > 1) exdc.GenerateDummyCursor(sm.dummyNum);// generate dummy curosr
+        }
+    }
+
+    // for delay one-up-two-down    
+    private void _SetStudyParams()
+    {
         int sessionCount = sm.studySessions.Count;
         if(sessionCount == 0){
             if(sm.positive > 1){
