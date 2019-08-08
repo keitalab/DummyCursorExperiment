@@ -75,7 +75,7 @@ public class RegisteringSubject : MonoBehaviour
         }
         FileInfo fi = new FileInfo(filepath);
         sw = fi.AppendText();
-        string[] column = {"dymmyNum", "delay", "cdr", "minAngle", "maxAngle", "InitX", "InitY","time", "Judge", "AbsolutePos", "RelativePos"};
+        string[] column = {"dummyNum", "delay", "cdr", "minAngle", "maxAngle", "InitX", "InitY","time", "Judge", "AbsolutePos", "RelativePos"};
         string _column = string.Join(",", column);
         sw.WriteLine(_column);
         sw.Flush();
