@@ -137,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &41947793
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -714,7 +714,11 @@ MonoBehaviour:
   isDelay: 0
   isDiscover: 0
   delayTime: 0
+  delayInterval: 0
+  diffDelayInterval: 0
+  dummyNumSession: 
   dummyNum: 0
+  cdrSession: []
   cdr: 0
   minAngle: 0
   maxAngle: 0
@@ -725,6 +729,7 @@ MonoBehaviour:
   sessionIntervalTime: 0
   selectedVisual: 0
   studySessions: []
+  practiceSessions: []
   perSession: 
   isStartSession: 0
   resultState: 0
@@ -737,6 +742,12 @@ MonoBehaviour:
   timeLimit: 0
   absPosStock: []
   relPosStock: []
+  positive: 0
+  turn: 0
+  continuous: 0
+  preReaction: 
+  currentReaction: 
+  isPractice: 0
 --- !u!1 &332568774
 GameObject:
   m_ObjectHideFlags: 0
