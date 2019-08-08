@@ -74,6 +74,11 @@ public class ExCursorMove : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space) && sm.isStartStudy) FinishSession(false);
         }
+
+        if(!sm.isStartStudy)
+        {
+            if(Input.GetKeyDown(KeyCode.RightArrow)) NextSession();
+        }
     }
 
     public void RandomizeCursorPos() {
@@ -92,23 +97,22 @@ public class ExCursorMove : MonoBehaviour
     // TODO: change here
     public void FinishSession(bool over)
     {
-        Vector3 currentCursorPos = Camera.main.WorldToScreenPoint(gameObject.transform.position);
-        float dist = Vector2.Distance(new Vector2(cx, cy), new Vector2(currentCursorPos.x, currentCursorPos.y));
         if(over) {
-            sm.resultState = 2;
+            sm.resultState = 1;
         } else {
-            if(dist <= 20f) {
-                sm.resultState = 0;
-                sm.positive++;
-            } else {
-                sm.resultState = 1;
-            }
+            sm.resultState = 0;
         }
         ctp.HideTrialPanel();
         tv.ResetTimer();
         jatv.FinishRecording();
-        itvc.ShowIntervalTimer();
         csc.ShowCursorSelector();
         sm.isStartSession = false;
+        sm.isStartStudy = false;
+    }
+
+    private void NextSession()
+    {
+        itvc.ShowIntervalTimer();
+        sm.isStartStudy = true;
     }
 }

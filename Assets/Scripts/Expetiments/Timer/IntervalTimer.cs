@@ -91,8 +91,9 @@ public class IntervalTimer : MonoBehaviour
             for(int i = 0; i < totalCursors; i++){
                 sm.dummySelectableNumbers.Add(i);
             }
-            sm.selfCursorNum = UnityEngine.Random.Range(0, totalCursors);// set correct cursor number
-            sm.dummySelectableNumbers.RemoveAt(sm.selfCursorNum); // remove true cursor number from list
+            int _selectorNum = UnityEngine.Random.Range(0, totalCursors);
+            sm.selfCursorNum = sm.dummySelectableNumbers[_selectorNum];// set correct cursor number
+            sm.dummySelectableNumbers.RemoveAt(_selectorNum); // remove true cursor number from list
 
             excv.RandomizeCursorPos();// generate user cursor
             if(sm.dummyNum > 1) exdc.GenerateDummyCursor(sm.dummyNum);// generate dummy curosr
@@ -116,8 +117,9 @@ public class IntervalTimer : MonoBehaviour
             for(int i = 0; i < totalCursors; i++){
                 sm.dummySelectableNumbers.Add(i);
             }
-            sm.selfCursorNum = UnityEngine.Random.Range(0, totalCursors + 1);// set correct cursor number
-            sm.dummySelectableNumbers.RemoveAt(sm.selfCursorNum); // remove true cursor number from list
+            int _selectorNum = UnityEngine.Random.Range(0, totalCursors);
+            sm.selfCursorNum = sm.dummySelectableNumbers[_selectorNum];// set correct cursor number
+            sm.dummySelectableNumbers.RemoveAt(_selectorNum); // remove true cursor number from list
 
             excv.RandomizeCursorPos();// generate user cursor
             if(sm.dummyNum > 1) exdc.GenerateDummyCursor(sm.dummyNum);// generate dummy curosr

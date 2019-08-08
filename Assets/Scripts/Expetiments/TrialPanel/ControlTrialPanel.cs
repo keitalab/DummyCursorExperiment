@@ -25,9 +25,9 @@ public class ControlTrialPanel : MonoBehaviour
 
     public void ShowTrialPanel()
     {
-        canvasGroup.alpha = 1;
-        canvasGroup.interactable = true;
-        canvasGroup.blocksRaycasts = true;
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
     }
 
     public void HideTrialPanel()
