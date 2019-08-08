@@ -21,12 +21,15 @@ public class ExCursorView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && sm.isStartStudy)
+        if(sm.isPractice)
         {
-            sm.isDiscover = !sm.isDiscover;
+            if (Input.GetKeyDown(KeyCode.Space) && sm.isStartStudy)
+            {
+                sm.isDiscover = !sm.isDiscover;
 
+            }
+            ChangeCursorVisual(sm.selectedVisual);
         }
-        ChangeCursorVisual(sm.selectedVisual);
     }
 
     private void ChangeCursorVisual(int _num)
