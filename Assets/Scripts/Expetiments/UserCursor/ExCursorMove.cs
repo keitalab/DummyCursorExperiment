@@ -31,6 +31,7 @@ public class ExCursorMove : MonoBehaviour
     private CursorSelectorController csc;
     public GameObject createDumyNumberView;
     private CreateDummyNumbeerView cdnv;
+    private ExCursorView ecv;
     
 
     // Start is called before the first frame update
@@ -44,6 +45,7 @@ public class ExCursorMove : MonoBehaviour
         tv = timerView.GetComponent<TimerView>();
         csc = selectorPanel.GetComponent<CursorSelectorController>();
         cdnv = createDumyNumberView.GetComponent<CreateDummyNumbeerView>();
+        ecv = gameObject.GetComponent<ExCursorView>();
         cx = Screen.width/2;
         cy = Screen.height/2;
     }
@@ -75,7 +77,9 @@ public class ExCursorMove : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && sm.isStartStudy) FinishSession(false);
         }
 
-        if(!sm.isStartStudy) if(Input.GetKeyDown(KeyCode.RightArrow)) NextSession();
+        if(!sm.isStartStudy) {
+            if(Input.GetKeyDown(KeyCode.RightArrow)) NextSession();
+        }
     }
 
     public void RandomizeCursorPos() {
@@ -91,7 +95,6 @@ public class ExCursorMove : MonoBehaviour
         gameObject.transform.position = new Vector3(rx, ry, 0);
     }
 
-    // TODO: change here
     public void FinishSession(bool over)
     {
         if(over) {

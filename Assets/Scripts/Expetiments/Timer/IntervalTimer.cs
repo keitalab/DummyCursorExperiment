@@ -12,6 +12,7 @@ public class IntervalTimer : MonoBehaviour
     private int seconds;
     public GameObject userCursor;
     private ExCursorMove excv;
+    private ExCursorView ecv;
     public GameObject dummyCursor;
     private ExDummyCreator exdc;
     public Text judgeAndTimeView;
@@ -25,11 +26,13 @@ public class IntervalTimer : MonoBehaviour
     private CursorSelectorController csc;
     public GameObject createDumyNumberView;
     private CreateDummyNumbeerView cdnv;
+    
     // Start is called before the first frame update
     void Start()
     {
         sm = GameObject.Find("StudyManager").GetComponent<StudyManager>();
         excv = userCursor.GetComponent<ExCursorMove>();
+        ecv = userCursor.GetComponent<ExCursorView>();
         exdc = dummyCursor.GetComponent<ExDummyCreator>();
         jatv = judgeAndTimeView.GetComponent<JudgeAndTimeViewer>();
         itvc = timerPanel.GetComponent<IntervalTimerViewController>();
@@ -48,6 +51,10 @@ public class IntervalTimer : MonoBehaviour
 
     public void StartCountdown()
     {
+        if(!sm.isPractice) {
+            ecv.UnableView();
+            UnableDummyView();
+        }
         intervalTime -= Time.deltaTime;
         seconds = (int)intervalTime;
         timerView.text = seconds.ToString();
@@ -56,6 +63,8 @@ public class IntervalTimer : MonoBehaviour
             intervalTime = sm.sessionIntervalTime;
             seconds = (int)intervalTime;
             sm.finishInterval = true;
+            ecv.EnableView();
+            EnableDummyView();
             SetStudyParams();
             cdnv.DestroyDummyView();
             cdnv.InitDummyNumberView();
@@ -238,5 +247,19 @@ public class IntervalTimer : MonoBehaviour
         #elif UNITY_STANDALONE
             UnityEngine.Application.Quit();
         #endif
+    }
+
+    private void EnableDummyView()
+    {
+        foreach(Transform child in dummyCursor.transform) {
+            child.gameObject.GetComponent<Renderer>().enabled = true;
+        }
+    }
+
+    private void UnableDummyView()
+    {
+        foreach(Transform child in dummyCursor.transform) {
+            child.gameObject.GetComponent<Renderer>().enabled = false;
+        }
     }
 }

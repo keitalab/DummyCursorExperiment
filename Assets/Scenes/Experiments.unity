@@ -1064,6 +1064,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   userCursor: {fileID: 1473109162}
   dummyCursor: {fileID: 1448884068}
+  dummyPrefab: {fileID: 516548847950511827, guid: d260a2a904da7486fbe61677c014e0c0,
+    type: 3}
   judgeAndTimeView: {fileID: 653375333}
   timerPanel: {fileID: 872406790}
   trialPanel: {fileID: 95861916}
@@ -1780,6 +1782,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1448884070}
   - component: {fileID: 1448884069}
+  - component: {fileID: 1448884071}
   m_Layer: 0
   m_Name: DummyCursor
   m_TagString: Untagged
@@ -1815,6 +1818,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1448884071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448884068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ed3ece1f99c34810bb7b90db86747e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1473109162
 GameObject:
   m_ObjectHideFlags: 0
