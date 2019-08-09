@@ -75,10 +75,7 @@ public class ExCursorMove : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && sm.isStartStudy) FinishSession(false);
         }
 
-        if(!sm.isStartStudy)
-        {
-            if(Input.GetKeyDown(KeyCode.RightArrow)) NextSession();
-        }
+        if(!sm.isStartStudy) if(Input.GetKeyDown(KeyCode.RightArrow)) NextSession();
     }
 
     public void RandomizeCursorPos() {
@@ -98,7 +95,7 @@ public class ExCursorMove : MonoBehaviour
     public void FinishSession(bool over)
     {
         if(over) {
-            sm.resultState = 1;
+            sm.resultState = 2;
         } else {
             sm.resultState = 0;
         }
