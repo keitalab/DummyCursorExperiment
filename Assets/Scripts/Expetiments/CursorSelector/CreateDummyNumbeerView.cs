@@ -28,8 +28,8 @@ public class CreateDummyNumbeerView : MonoBehaviour
             counter = 0;
             foreach(Transform child in dummies.transform) {
                 Vector3 pos = Camera.main.WorldToScreenPoint(new Vector3(child.transform.position.x, child.transform.position.y, 0));
-                pos.x = pos.x - Screen.width / 2 + 30;
-                pos.y = pos.y - Screen.height / 2 + 20;
+                pos.x = pos.x - Screen.width / 2;
+                pos.y = pos.y - Screen.height / 2 + 1;
                 text[counter].GetComponent<RectTransform>().localPosition = pos;
                 if(sm.dummySelectableNumbers.Count != 0){
                     int randomNumber = UnityEngine.Random.Range(0, sm.dummySelectableNumbers.Count);

@@ -22,8 +22,8 @@ public class CreateUserCursorNumberView : MonoBehaviour
             float x = userCursor.transform.position.x;
             float y = userCursor.transform.position.y;
             Vector3 pos = Camera.main.WorldToScreenPoint(userCursor.transform.position);
-            pos.x = pos.x - Screen.width/2 + 30;
-            pos.y = pos.y - Screen.height/2 + 20;
+            pos.x = pos.x - Screen.width/2;
+            pos.y = pos.y - Screen.height/2 + 1;
             this.GetComponent<RectTransform>().localPosition = pos;
             this.GetComponent<Text>().text = sm.selfCursorNum.ToString();
         }
