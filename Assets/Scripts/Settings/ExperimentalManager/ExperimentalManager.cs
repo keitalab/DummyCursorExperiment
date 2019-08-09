@@ -45,7 +45,11 @@ public class ExperimentalManager : MonoBehaviour
         trial = 5;
         practiceSession = 1;
         PracticeSettings = new List<string>();
-        PracticeSettings.Add("init");
+        PracticeSettings.Add("1,0.0,1.0");
+        PracticeSettings.Add("5,0.0,1.0");
+        PracticeSettings.Add("10,0.0,1.0");
+        PracticeSettings.Add("20,0.0,1.0");
+        PracticeSettings.Add("50,0.0,1.0");
     }
 
     // Start is called before the first frame update
@@ -110,13 +114,13 @@ public class ExperimentalManager : MonoBehaviour
     public void SaveSeaquence()
     {
         ExperimentalSettings.Clear();
-        PracticeSettings.Clear();
-        for(int i = 0; i < dummyNumSession.Count; i++){
-            for(int j = 0; j < practiceSession; j++){
-                int _dummies = dummyNumSession[i];
-                PracticeSettings.Add($"{_dummies.ToString()}" + ",0.0,1.0");
-            }
-        }
+        // PracticeSettings.Clear();
+        // for(int i = 0; i < dummyNumSession.Count; i++){
+        //     for(int j = 0; j < practiceSession; j++){
+        //         int _dummies = dummyNumSession[i];
+        //         PracticeSettings.Add($"{_dummies.ToString()}" + ",0.0,1.0");
+        //     }
+        // }
 
         for(int i = 0; i < dummyNumSession.Count; i++){
             for(int j = 0; j < trial; j++){
