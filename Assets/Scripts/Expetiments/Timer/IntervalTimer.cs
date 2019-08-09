@@ -71,6 +71,7 @@ public class IntervalTimer : MonoBehaviour
             jatv.StartRecording();
             itvc.HideIntervalTimer();
             csc.HideCursorSelector();
+            if(sm.isPractice) sm.currentPracticeSession++; else sm.currentStudySession++;
             sm.isStartSession = !sm.isStartSession;
             ctp.ShowTrialPanel();
             return;

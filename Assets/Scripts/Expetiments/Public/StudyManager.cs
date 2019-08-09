@@ -44,6 +44,7 @@ public class StudyManager : MonoBehaviour
     public int selfCursorNum;
     public List<int> dummySelectableNumbers;
     public int userSelectCursorNum;
+    public int currentPracticeSession, currentStudySession;
     public void Awake()
     {
         subjectName = "your name";
@@ -72,6 +73,8 @@ public class StudyManager : MonoBehaviour
         dummySelectableNumbers = new List<int>();
         dummySelectableNumbers.Add(9999);
         userSelectCursorNum = 9999;
+        currentPracticeSession = 1;
+        currentStudySession = 1;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     // Start is called before the first frame update
