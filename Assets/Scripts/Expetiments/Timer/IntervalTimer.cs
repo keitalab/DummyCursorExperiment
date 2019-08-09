@@ -58,7 +58,6 @@ public class IntervalTimer : MonoBehaviour
             sm.finishInterval = true;
             SetStudyParams();
             cdnv.DestroyDummyView();
-            cdnv.AllClear();
             cdnv.InitDummyNumberView();
             jatv.StartRecording();
             itvc.HideIntervalTimer();

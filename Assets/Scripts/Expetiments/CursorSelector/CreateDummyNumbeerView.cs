@@ -47,11 +47,6 @@ public class CreateDummyNumbeerView : MonoBehaviour
         GenerateDummyNumberView(sm.dummyNum);
     }
 
-    public void AllClear()
-    {
-        Array.Clear(text, 0, text.Length);
-    }
-
     private void GenerateDummyNumberView(int _num)
     {
         for(int i = 0; i < _num; i++)
@@ -67,5 +62,6 @@ public class CreateDummyNumbeerView : MonoBehaviour
         {
             DestroyImmediate(text[i]);
         }
+        Array.Clear(text, 0, text.Length);
     }
 }
