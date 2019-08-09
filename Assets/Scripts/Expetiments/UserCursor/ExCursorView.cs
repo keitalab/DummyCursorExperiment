@@ -10,10 +10,12 @@ public class ExCursorView : MonoBehaviour
     public Sprite defaultCursor, discoveredCursor;
     public Sprite circleCursor, discoveredCircleCursor;
     public Sprite squareCursor, discoveredSquareCursor;
+    private Renderer _renderer;
     // Start is called before the first frame update
     void Start()
     {
         sm = studyManager.GetComponent<StudyManager>();
+        _renderer = gameObject.GetComponent<Renderer>();
         MainSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         ChangeCursorVisual(sm.selectedVisual);
     }
@@ -69,5 +71,15 @@ public class ExCursorView : MonoBehaviour
                     break;
             }
         }
+    }
+
+    public void EnableView()
+    {
+        _renderer.enabled = true;
+    }
+
+    public void UnableView()
+    {
+        _renderer.enabled = false;
     }
 }
