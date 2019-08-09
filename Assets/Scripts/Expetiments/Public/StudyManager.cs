@@ -62,7 +62,7 @@ public class StudyManager : MonoBehaviour
         relPath = "";
         absPosStock = new List<Vector2>();
         relPosStock = new List<Vector2>();
-        timeLimit = 31.0f;
+        timeLimit = 61.0f;
         positive = 0;
         turn = 0;
         continuous = 0;

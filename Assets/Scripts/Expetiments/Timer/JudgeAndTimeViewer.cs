@@ -50,7 +50,8 @@ public class JudgeAndTimeViewer : MonoBehaviour
         string filepath = Path.Combine(sm.rootPath, "result.csv");
         StreamWriter sw;
         FileInfo fi = new FileInfo(filepath);
-        string[] param = {sm.dummyNum.ToString(), sm.delayTime.ToString(), sm.cdr.ToString(),// TODO: fix
+        string[] param = {sm.dummyNum.ToString(), sm.selfCursorNum.ToString(), sm.userSelectCursorNum.ToString(),
+            sm.delayTime.ToString(), sm.cdr.ToString(),
             sm.minAngle.ToString(), sm.maxAngle.ToString(),
             sm.initx.ToString(), sm.inity.ToString(),
             sm.discoveredTime.ToString(), sm.resultState.ToString(),
