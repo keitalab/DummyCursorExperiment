@@ -51,7 +51,6 @@ public class StudyManager : MonoBehaviour
         finishInterval = false;
         isDiscover = false;
         sessionIntervalTime = 4.0f;
-        selectedVisual = 0;
         perSession = "";
         isStartSession = false;
         initx = 0;
@@ -99,6 +98,7 @@ public class StudyManager : MonoBehaviour
         // studySessions = new List<string>(em.ExperimentalSettings);
         studySessions = new List<string>(em.ExperimentalSettings);
         practiceSessions = new List<string>(em.PracticeSettings);
+        selectedVisual = em.selectedVisual;
         // dummyNumSession = em.dummyNumSession;
         // delayInterval = em.intervalDelay;
         // diffDelayInterval = delayInterval / 2f;

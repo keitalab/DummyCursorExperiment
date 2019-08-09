@@ -34,7 +34,7 @@ public class ExperimentalManager : MonoBehaviour
         intervalDelay = 0.1f;
         minAngle = 45;
         maxAngle = 360-minAngle;
-        selectedVisual = 0;
+        selectedVisual = 1;
         cdr = 1.0f;// default cdr
         cdrSession = new List<float>();
         cdrSession.Add(cdr);
@@ -43,7 +43,7 @@ public class ExperimentalManager : MonoBehaviour
         ExperimentalSettings = new List<string>();
         ExperimentalSettings.Add("init");
         trial = 5;
-        practiceSession = 3;
+        practiceSession = 1;
         PracticeSettings = new List<string>();
         PracticeSettings.Add("init");
     }
