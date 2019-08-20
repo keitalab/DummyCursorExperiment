@@ -50,56 +50,13 @@ public class ExperimentalManager : MonoBehaviour
         PracticeSettings.Add("10,0.0,1.0");
         PracticeSettings.Add("20,0.0,1.0");
         PracticeSettings.Add("50,0.0,1.0");
-        PracticeSettings.Add("5,0.0,1.0");
-        PracticeSettings.Add("10,0.0,1.0");
-        PracticeSettings.Add("20,0.0,1.0");
-        PracticeSettings.Add("50,0.0,1.0");
-        PracticeSettings.Add("5,0.0,1.0");
-        PracticeSettings.Add("10,0.0,1.0");
-        PracticeSettings.Add("20,0.0,1.0");
-        PracticeSettings.Add("50,0.0,1.0");
-        PracticeSettings.Add("5,0.0,1.0");
-        PracticeSettings.Add("10,0.0,1.0");
-        PracticeSettings.Add("20,0.0,1.0");
-        PracticeSettings.Add("50,0.0,1.0");
-        PracticeSettings.Add("5,0.0,1.0");
-        PracticeSettings.Add("10,0.0,1.0");
-        PracticeSettings.Add("20,0.0,1.0");
-        PracticeSettings.Add("50,0.0,1.0");
-        PracticeSettings.Add("5,0.0,1.0");
-        PracticeSettings.Add("10,0.0,1.0");
-        PracticeSettings.Add("20,0.0,1.0");
-        PracticeSettings.Add("50,0.0,1.0");
-        PracticeSettings.Add("5,0.0,1.0");
-        PracticeSettings.Add("10,0.0,1.0");
-        PracticeSettings.Add("20,0.0,1.0");
-        PracticeSettings.Add("50,0.0,1.0");
-        PracticeSettings.Add("5,0.0,1.0");
-        PracticeSettings.Add("10,0.0,1.0");
-        PracticeSettings.Add("20,0.0,1.0");
-        PracticeSettings.Add("50,0.0,1.0");
-        PracticeSettings.Add("5,0.0,1.0");
-        PracticeSettings.Add("10,0.0,1.0");
-        PracticeSettings.Add("20,0.0,1.0");
-        PracticeSettings.Add("50,0.0,1.0");
-        PracticeSettings.Add("5,0.0,1.0");
-        PracticeSettings.Add("10,0.0,1.0");
-        PracticeSettings.Add("20,0.0,1.0");
-        PracticeSettings.Add("50,0.0,1.0");
-        PracticeSettings.Add("5,0.0,1.0");
-        PracticeSettings.Add("10,0.0,1.0");
-        PracticeSettings.Add("20,0.0,1.0");
-        PracticeSettings.Add("50,0.0,1.0");
-        PracticeSettings.Add("5,0.0,1.0");
-        PracticeSettings.Add("10,0.0,1.0");
-        PracticeSettings.Add("20,0.0,1.0");
-        PracticeSettings.Add("50,0.0,1.0");
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     // Update is called once per frame
@@ -107,6 +64,7 @@ public class ExperimentalManager : MonoBehaviour
     {
 
     }
+
 
     public void ChangeScene()
     {
