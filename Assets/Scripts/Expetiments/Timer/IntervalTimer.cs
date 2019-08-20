@@ -82,10 +82,18 @@ public class IntervalTimer : MonoBehaviour
     {
         sm.isPractice = sm.practiceSessions.Count != 0 ? true : false;
         if(sm.isPractice)
-        {
+        {   
             int sessionCount = sm.practiceSessions.Count;
-            sm.perSession = sm.practiceSessions[0];
-            sm.practiceSessions.RemoveAt(0);
+            if(sessionCount == 0) Quit();
+            if(sm.init)
+            {
+                sm.perSession = sm.practiceSessions[0];
+                sm.practiceSessions.RemoveAt(0);
+            } else {
+                int sessionNum = UnityEngine.Random.Range(0, sessionCount);
+                sm.perSession = sm.practiceSessions[sessionNum];
+                sm.practiceSessions.RemoveAt(sessionNum);
+            }
 
             string[] _params = sm.perSession.Split(',');
             sm.dummyNum = int.Parse(_params[0]);
