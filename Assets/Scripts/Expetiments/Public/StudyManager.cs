@@ -89,7 +89,7 @@ public class StudyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.LeftArrow)) SceneManager.LoadScene("Settings", LoadSceneMode.Single);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
