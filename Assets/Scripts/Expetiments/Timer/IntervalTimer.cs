@@ -59,6 +59,7 @@ public class IntervalTimer : MonoBehaviour
         intervalTime -= Time.deltaTime;
         seconds = (int)intervalTime;
         timerView.text = seconds.ToString();
+        sm.isPractice = sm.practiceSessions.Count != 0 ? true : false;
         if(seconds <= 0){
             sm.isDiscover = false;
             intervalTime = sm.sessionIntervalTime;
@@ -81,7 +82,6 @@ public class IntervalTimer : MonoBehaviour
 
     private void SetStudyParams()
     {
-        sm.isPractice = sm.practiceSessions.Count != 0 ? true : false;
         if(sm.isPractice)
         {   
             int sessionCount = sm.practiceSessions.Count;
