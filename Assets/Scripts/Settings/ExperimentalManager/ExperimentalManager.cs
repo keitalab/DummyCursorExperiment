@@ -65,83 +65,22 @@ public class ExperimentalManager : MonoBehaviour
 
     }
 
-
     public void ChangeScene()
     {
         SaveSeaquence();
+        DataManager.Instance.PreviousScene = "Settings";
         DontDestroyOnLoad(this);
         SceneManager.LoadScene("Experiments", LoadSceneMode.Single);
     }
 
-    private int CalcDelaySession(float _min, float _max, float _interval)
-    {
-        delaySession.Clear();
-        int min = Mathf.CeilToInt(_min * 1000f);
-        int max = Mathf.CeilToInt(_max * 1000f);
-        int interval = Mathf.CeilToInt(_interval * 1000f);
-
-        if(min >= max) return 0;
-
-        if(interval == 0)
-        {
-            delaySession.Add(min);
-            delaySession.Add(max);
-            return delaySession.Count;
-        }
-
-        if((max-min) % interval == 0)
-        {
-            for(int i = min; i < (max-min)/interval; i++)
-            {
-                delaySession.Add(i*interval);
-            }
-            delaySession.Add(max);
-            return delaySession.Count;
-        } else
-        {
-            for(int i = min; i < (max-min)/interval; i++)
-            {
-                delaySession.Add(i*interval);
-            }
-            delaySession.Add(max);
-            return delaySession.Count;
-        }
-    }
-
-    // TODO: refactor here. 
-    // currently, this function generates a "pre" study session
-    // at first, generate practice session
-    // nextly, genereate study session
-    // finally, combine above sessions
     public void SaveSeaquence()
     {
         ExperimentalSettings.Clear();
-        // PracticeSettings.Clear();
-        // for(int i = 0; i < dummyNumSession.Count; i++){
-        //     for(int j = 0; j < practiceSession; j++){
-        //         int _dummies = dummyNumSession[i];
-        //         PracticeSettings.Add($"{_dummies.ToString()}" + ",0.0,1.0");
-        //     }
-        // }
-
         for(int i = 0; i < dummyNumSession.Count; i++){
             for(int j = 0; j < trial; j++){
                 int _dummies = dummyNumSession[i];
                 ExperimentalSettings.Add($"{_dummies.ToString()}" + ",0.0,1.0");
             }
         }
-        // int delaySessionSum = CalcDelaySession(minDelay, maxDelay, intervalDelay);
-        // for(int i = 0; i < dummyNumSession.Count; i++){
-        //     for(int j = 0; j < delaySessionSum; j++){
-        //         for(int k = 0; k < cdrSession.Count; k++){
-        //             for(int l = 0; l < trial; l++){
-        //                 int _dummies = dummyNumSession[i];
-        //                 int _delay = delaySession[j];
-        //                 float _cdr = cdrSession[k];
-        //                 ExperimentalSettings.Add($"{_dummies.ToString()}" + "," + $"{_delay.ToString()}" + "," + $"{_cdr.ToString()}");
-        //             }
-        //         }
-        //     }
-        // }
     }
 }

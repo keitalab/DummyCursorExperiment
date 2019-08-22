@@ -80,7 +80,7 @@ public class StudyManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        initializeSettings();
+        // initializeSettings();
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
@@ -97,18 +97,20 @@ public class StudyManager : MonoBehaviour
     
     private void initializeSettings()
     {
-        em = GameObject.Find("ExperimentalManager").GetComponent<ExperimentalManager>();
-        // studySessions = new List<string>(em.ExperimentalSettings);
-        studySessions = new List<string>(em.ExperimentalSettings);
-        practiceSessions = new List<string>(em.PracticeSettings);
-        selectedVisual = em.selectedVisual;
-        // dummyNumSession = em.dummyNumSession;
-        // delayInterval = em.intervalDelay;
-        // diffDelayInterval = delayInterval / 2f;
-        // cdrSession = em.cdrSession;
-        // GenerateStartStudySession(dummyNumSession, cdrSession);
-        minAngle = em.minAngle;
-        maxAngle = 360 - minAngle;
+        if(DataManager.Instance.PreviousScene == "Settings") {
+            Debug.Log("Loaded from Settings");
+            em = GameObject.Find("ExperimentalManager").GetComponent<ExperimentalManager>();
+            studySessions = new List<string>(em.ExperimentalSettings);
+            practiceSessions = new List<string>(em.PracticeSettings);
+            selectedVisual = em.selectedVisual;
+            // dummyNumSession = em.dummyNumSession;
+            // delayInterval = em.intervalDelay;
+            // diffDelayInterval = delayInterval / 2f;
+            // cdrSession = em.cdrSession;
+            // GenerateStartStudySession(dummyNumSession, cdrSession);
+            minAngle = em.minAngle;
+            maxAngle = 360 - minAngle;
+        }
     }
 
     private void GenerateStartStudySession(List<int> _dummy, List<float> _cdr)

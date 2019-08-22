@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using MoveFunction;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ExCursorMove : MonoBehaviour
 {
