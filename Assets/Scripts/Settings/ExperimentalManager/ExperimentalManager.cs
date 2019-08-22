@@ -42,7 +42,7 @@ public class ExperimentalManager : MonoBehaviour
         delaySession.Add(1);
         ExperimentalSettings = new List<string>();
         ExperimentalSettings.Add("init");
-        trial = 5;
+        trial = 3;
         practiceSession = 1;
         PracticeSettings = new List<string>();
         PracticeSettings.Add("1,0.0,1.0");

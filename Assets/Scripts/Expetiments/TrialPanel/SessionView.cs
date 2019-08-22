@@ -27,6 +27,6 @@ public class SessionView : MonoBehaviour
 
     private void ShowSession()
     {
-        sessionView.text = (sm.studySessions.Count + 1).ToString() + "/" + totalSessionNum.ToString();
+        sessionView.text = (sm.studySessions.Count).ToString() + "/" + (totalSessionNum-1).ToString();
     }
 }
