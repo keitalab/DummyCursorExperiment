@@ -25,7 +25,6 @@ public class RegisteringSubject : MonoBehaviour
         itvc = timerPanel.GetComponent<IntervalTimerViewController>();
         csp = startPanel.GetComponent<ControlStartPanel>();
         it = intervalTimer.GetComponent<IntervalTimer>();
-        subjectNameField.text = "OC2";
     }
 
     // Update is called once per frame

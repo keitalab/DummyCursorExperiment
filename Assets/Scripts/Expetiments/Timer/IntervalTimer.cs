@@ -108,33 +108,31 @@ public class IntervalTimer : MonoBehaviour
             excv.RandomizeCursorPos();// generate user cursor
             if(sm.dummyNum > 1) exdc.GenerateDummyCursor(sm.dummyNum);// generate dummy curosr
         } else {
-            // DontDestroyOnLoad(this);
-            SceneManager.LoadScene("Settings", LoadSceneMode.Single);
-            // int sessionCount = sm.studySessions.Count;
-            // if(sessionCount == 0) Quit();
-            // int sessionNum = UnityEngine.Random.Range(0, sessionCount);
-            // sm.perSession = sm.studySessions[sessionNum];
-            // sm.studySessions.RemoveAt(sessionNum);
+            int sessionCount = sm.studySessions.Count;
+            if(sessionCount == 0) Quit();
+            int sessionNum = UnityEngine.Random.Range(0, sessionCount);
+            sm.perSession = sm.studySessions[sessionNum];
+            sm.studySessions.RemoveAt(sessionNum);
 
-            // string[] _params = sm.perSession.Split(',');
-            // sm.dummyNum = int.Parse(_params[0]);
-            // sm.delayTime = float.Parse(_params[1]) / 1000f;
-            // sm.isDelay = (sm.delayTime) == 0f ? false : true;
-            // sm.cdr = float.Parse(_params[2]);
+            string[] _params = sm.perSession.Split(',');
+            sm.dummyNum = int.Parse(_params[0]);
+            sm.delayTime = float.Parse(_params[1]) / 1000f;
+            sm.isDelay = (sm.delayTime) == 0f ? false : true;
+            sm.cdr = float.Parse(_params[2]);
 
-            // // generate correct user cursor number by randomizer
-            // int totalCursors = 1 + sm.dummyNum;
-            // sm.dummySelectableNumbers.Clear();
-            // sm.dummySelectableNumbers = new List<int>();
-            // for(int i = 0; i < totalCursors; i++){
-            //     sm.dummySelectableNumbers.Add(i);
-            // }
-            // int _selectorNum = UnityEngine.Random.Range(0, totalCursors);
-            // sm.selfCursorNum = sm.dummySelectableNumbers[_selectorNum];// set correct cursor number
-            // sm.dummySelectableNumbers.RemoveAt(_selectorNum); // remove true cursor number from list
+            // generate correct user cursor number by randomizer
+            int totalCursors = 1 + sm.dummyNum;
+            sm.dummySelectableNumbers.Clear();
+            sm.dummySelectableNumbers = new List<int>();
+            for(int i = 0; i < totalCursors; i++){
+                sm.dummySelectableNumbers.Add(i);
+            }
+            int _selectorNum = UnityEngine.Random.Range(0, totalCursors);
+            sm.selfCursorNum = sm.dummySelectableNumbers[_selectorNum];// set correct cursor number
+            sm.dummySelectableNumbers.RemoveAt(_selectorNum); // remove true cursor number from list
 
-            // excv.RandomizeCursorPos();// generate user cursor
-            // if(sm.dummyNum > 1) exdc.GenerateDummyCursor(sm.dummyNum);// generate dummy curosr
+            excv.RandomizeCursorPos();// generate user cursor
+            if(sm.dummyNum > 1) exdc.GenerateDummyCursor(sm.dummyNum);// generate dummy curosr
         }
     }
 

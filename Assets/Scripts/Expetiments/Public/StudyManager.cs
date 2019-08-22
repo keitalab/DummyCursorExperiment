@@ -45,7 +45,6 @@ public class StudyManager : MonoBehaviour
     public List<int> dummySelectableNumbers;
     public int userSelectCursorNum;
     public int currentPracticeSession, currentStudySession;
-    public bool init;
     public void Awake()
     {
         subjectName = "your name";
@@ -76,7 +75,6 @@ public class StudyManager : MonoBehaviour
         userSelectCursorNum = 9999;
         currentPracticeSession = 1;
         currentStudySession = 1;
-        init = true;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     // Start is called before the first frame update
@@ -89,7 +87,7 @@ public class StudyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.LeftArrow)) SceneManager.LoadScene("Settings", LoadSceneMode.Single);
+
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
