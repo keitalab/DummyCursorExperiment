@@ -47,7 +47,14 @@ public class IntervalTimer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(sm.isStartStudy && !sm.isStartSession) StartCountdown();
+        if(sm.isStartStudy && !sm.isStartSession)
+        {
+            if(sm.isPractice) StartCountdown();
+                else if(sm.isReady == true) StartCountdown();
+        }
+
+        if(sm.practiceSessions.Count == 0 && sm.isReady == false)
+            if(Input.GetKeyDown(KeyCode.UpArrow)) sm.isReady = true;
     }
 
     public void StartCountdown()

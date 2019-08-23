@@ -46,6 +46,7 @@ public class StudyManager : MonoBehaviour
     public int userSelectCursorNum;
     public int currentPracticeSession, currentStudySession;
     public bool isPracticeReady;
+    public bool isReady;
     public void Awake()
     {
         subjectName = "your name";
@@ -77,6 +78,7 @@ public class StudyManager : MonoBehaviour
         currentPracticeSession = 1;
         currentStudySession = 1;
         isPracticeReady = false;
+        isReady = false;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     // Start is called before the first frame update

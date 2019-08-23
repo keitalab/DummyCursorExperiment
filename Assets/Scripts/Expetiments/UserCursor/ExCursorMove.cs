@@ -32,6 +32,7 @@ public class ExCursorMove : MonoBehaviour
     public GameObject createDumyNumberView;
     private CreateDummyNumbeerView cdnv;
     private ExCursorView ecv;
+    public GameObject dummyCursor;
 
     // Start is called before the first frame update
     void Start()
@@ -78,8 +79,15 @@ public class ExCursorMove : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.RightArrow))
         {
             if(sm.isPractice) {
-                if(sm.isPracticeReady) NextSession();
-            } else NextSession();
+                if(sm.practiceSessions.Count != 0)
+                {
+                    if(sm.isPracticeReady) NextSession();
+                } else {
+                    ecv.UnableView();
+                    UnableDummyView();
+                    NextSession();
+                }
+            } else if(sm.isReady) NextSession();
         }
     }
 
@@ -115,5 +123,12 @@ public class ExCursorMove : MonoBehaviour
         itvc.ShowIntervalTimer();
         sm.isStartStudy = true;
         if(sm.isPractice) sm.isPracticeReady = !sm.isPracticeReady;
+    }
+
+    private void UnableDummyView()
+    {
+        foreach(Transform child in dummyCursor.transform) {
+            child.gameObject.GetComponent<Renderer>().enabled = false;
+        }
     }
 }
