@@ -30,10 +30,10 @@ public class SessionCounter : MonoBehaviour
     {
         if(sm.isPractice)
         {
-            sessionCounter.text =  "Practice Session" +
+            sessionCounter.text =  "Next Practice Session" +
                 "\n" + sm.currentPracticeSession.ToString() + "/" + initPracticeCounter.ToString();
         } else {
-            sessionCounter.text = "Next Session" +
+            sessionCounter.text = "Next Study Session" +
             "\n" + sm.currentStudySession.ToString() + "/" + initStudyCounter.ToString();
         }
     }
