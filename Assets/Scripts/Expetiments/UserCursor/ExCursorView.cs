@@ -23,9 +23,10 @@ public class ExCursorView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow) && !sm.isStartStudy) {
+        if (Input.GetKeyDown(KeyCode.DownArrow) && !sm.isStartStudy) {
             if(sm.isPractice) {
                 sm.isDiscover = !sm.isDiscover;
+                sm.isReady = !sm.isReady;
                 ChangeCursorVisual(sm.selectedVisual);
             } else {
                 sm.isDiscover = false;

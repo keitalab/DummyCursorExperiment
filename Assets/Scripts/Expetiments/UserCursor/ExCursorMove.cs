@@ -12,7 +12,6 @@ public class ExCursorMove : MonoBehaviour
     private StudyManager sm;
     private float rx, ry, ax, ay;
     private Vector3 ConvertPosition;
-    private float delayTime, cdr;
     private float cx, cy;
     private float px, py;
 
@@ -33,7 +32,6 @@ public class ExCursorMove : MonoBehaviour
     public GameObject createDumyNumberView;
     private CreateDummyNumbeerView cdnv;
     private ExCursorView ecv;
-    
 
     // Start is called before the first frame update
     void Start()
@@ -74,12 +72,14 @@ public class ExCursorMove : MonoBehaviour
             px = gameObject.transform.position.x;
             py = gameObject.transform.position.y;
             
-
             if (Input.GetKeyDown(KeyCode.Space) && sm.isStartStudy) FinishSession(false);
         }
 
-        if(!sm.isStartStudy) {
-            if(Input.GetKeyDown(KeyCode.RightArrow)) NextSession();
+        if(Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            if(sm.isPractice) {
+                if(sm.isReady) NextSession();
+            } else NextSession();
         }
     }
 
@@ -103,7 +103,6 @@ public class ExCursorMove : MonoBehaviour
         } else {
             sm.resultState = 0;
         }
-        ctp.HideTrialPanel();
         tv.ResetTimer();
         jatv.FinishRecording();
         csc.ShowCursorSelector();
@@ -115,5 +114,6 @@ public class ExCursorMove : MonoBehaviour
     {
         itvc.ShowIntervalTimer();
         sm.isStartStudy = true;
+        if(sm.isPractice) sm.isReady = !sm.isReady;
     }
 }
