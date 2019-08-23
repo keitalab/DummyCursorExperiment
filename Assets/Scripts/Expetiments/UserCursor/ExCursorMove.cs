@@ -78,7 +78,7 @@ public class ExCursorMove : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.RightArrow))
         {
             if(sm.isPractice) {
-                if(sm.isReady) NextSession();
+                if(sm.isPracticeReady) NextSession();
             } else NextSession();
         }
     }
@@ -114,6 +114,6 @@ public class ExCursorMove : MonoBehaviour
     {
         itvc.ShowIntervalTimer();
         sm.isStartStudy = true;
-        if(sm.isPractice) sm.isReady = !sm.isReady;
+        if(sm.isPractice) sm.isPracticeReady = !sm.isPracticeReady;
     }
 }

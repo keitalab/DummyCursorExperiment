@@ -26,7 +26,7 @@ public class ExCursorView : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.DownArrow) && !sm.isStartStudy) {
             if(sm.isPractice) {
                 sm.isDiscover = !sm.isDiscover;
-                sm.isReady = !sm.isReady;
+                sm.isPracticeReady = !sm.isPracticeReady;
                 ChangeCursorVisual(sm.selectedVisual);
             } else {
                 sm.isDiscover = false;
