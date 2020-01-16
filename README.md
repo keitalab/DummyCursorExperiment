@@ -1,6 +1,6 @@
-# Dummy Cursor Program Unity ver.
+# Dummy Cursor Experiment
 
-ダミーカーソルをUnity で実装．
+The README is work in progress. We re-write in English. In addition, we create a detailed document and update program.
 
 ## How to use ?  
 
